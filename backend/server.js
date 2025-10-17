@@ -31,8 +31,11 @@ app.use('/api/transactions', transactionRoutes);
 
 app.use('/api/admin/users', adminRoutes);
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+// });
+
+module.exports = app;
+module.exports.handler = serverless(app);
