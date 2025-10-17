@@ -32,8 +32,9 @@ const Router = () => {
         <div className="flex flex-col min-h-screen">
             <header className="bg-white shadow-md">
                 <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
-                    <div className="text-2xl font-bold text-indigo-600">
-                        IMS Dashboard
+                    <div className="flex items-center justify-between gap-2 text-2xl font-bold text-indigo-600">
+                        <img className='h-9' src="android-chrome-512x512.png" alt="" />
+                        IMS
                     </div>
                     <div className="flex items-center space-x-6">
                         <button onClick={() => setPage('products')} className={`text-gray-600 hover:text-indigo-600 ${page === 'products' ? 'border-b-2 border-indigo-600 font-semibold' : ''}`}>
@@ -44,7 +45,7 @@ const Router = () => {
                         </button>
                         {isAdmin && (
                             <button onClick={() => setPage('admin')} className={`text-gray-600 hover:text-indigo-600 ${page === 'admin' ? 'border-b-2 border-indigo-600 font-semibold' : ''}`}>
-                                Admin (Users)
+                                <strong>Admin</strong>
                             </button>
                         )}
                         <div className="text-sm font-medium text-gray-500">

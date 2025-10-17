@@ -94,14 +94,14 @@ const Admin = () => {
     }
 
     return (
-        <div className="p-8 bg-white min-h-screen">
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-6">User Management (Admin)</h1>
+        <div className="p-4 sm:p-8 bg-white min-h-screen">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">User Management (Admin)</h1>
             {message && <div className={`p-3 mb-4 rounded-md ${message.startsWith('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>{message}</div>}
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 {/* User Form */}
-                <div className="lg:col-span-1 bg-gray-50 p-6 rounded-xl shadow-lg h-fit">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">{isEditing ? 'Edit User' : 'Add New User'}</h2>
+                <div className="md:col-span-1 bg-gray-50 p-5 sm:p-6 rounded-xl shadow-lg h-fit">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">{isEditing ? 'Edit User' : 'Add New User'}</h2>
                     <form onSubmit={handleSave} className="space-y-4">
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
                         <input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required className="w-full p-2 border rounded-md" />
@@ -118,7 +118,7 @@ const Admin = () => {
                             <option value="admin">Admin</option>
                         </select>
                         
-                        <div className="flex space-x-2">
+                        <div className="flex space-x-2 pt-2">
                             <button type="submit" className="flex-1 p-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
                                 {isEditing ? 'Update User' : 'Create User'}
                             </button>
@@ -132,29 +132,29 @@ const Admin = () => {
                 </div>
 
                 {/* User List */}
-                <div className="lg:col-span-2">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">System Users ({users.length})</h2>
+                <div className="md:col-span-2">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">System Users ({users.length})</h2>
                     <div className="overflow-x-auto shadow-lg rounded-xl">
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-100">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {users.map((u) => (
                                     <tr key={u._id} className="hover:bg-indigo-50">
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{u.name}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{u.email}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{u.name}</td>
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{u.email}</td>
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                                             <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${u.role === 'admin' ? 'bg-indigo-100 text-indigo-800' : 'bg-gray-200 text-gray-800'}`}>
                                                 {u.role.toUpperCase()}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <button onClick={() => handleEdit(u)} className="text-indigo-600 hover:text-indigo-900 mr-3">Edit</button>
                                             <button onClick={() => handleDelete(u._id)} className="text-red-600 hover:text-red-900">Delete</button>
                                         </td>

@@ -83,14 +83,14 @@ const Transactions = () => {
     }
 
     return (
-        <div className="p-8 bg-white min-h-screen">
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-6">Inventory Transactions</h1>
+        <div className="p-4 sm:p-8 bg-white min-h-screen">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">Inventory Transactions</h1>
             {message && <div className={`p-3 mb-4 rounded-md ${message.startsWith('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>{message}</div>}
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 {/* Transaction Form */}
-                <div className="lg:col-span-1 bg-gray-50 p-6 rounded-xl shadow-lg h-fit">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Record New Transaction</h2>
+                <div className="md:col-span-1 bg-gray-50 p-5 sm:p-6 rounded-xl shadow-lg h-fit">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Record New Transaction</h2>
                     <form onSubmit={handleRecord} className="space-y-4">
                         <label htmlFor="productId" className="block text-sm font-medium text-gray-700">Product</label>
                         <select id="productId" name="productId" value={formData.productId} onChange={handleChange} required className="w-full p-2 border rounded-md">
@@ -115,31 +115,31 @@ const Transactions = () => {
                 </div>
 
                 {/* Transaction History List */}
-                <div className="lg:col-span-2">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Transaction History ({transactions.length})</h2>
+                <div className="md:col-span-2">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Transaction History ({transactions.length})</h2>
                     <div className="overflow-x-auto shadow-lg rounded-xl">
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-100">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price/Unit</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qty</th>
+                                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price/Unit</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {transactions.map((t) => (
                                     // ADD CONDITIONAL CHECK HERE
                                     <tr key={t._id} className="hover:bg-indigo-50">
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formatTransactionDate(t.transactionDate)}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formatTransactionDate(t.transactionDate)}</td>
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {/* CHECK IF PRODUCT EXISTS BEFORE READING NAME */}
                                             {t.product ? t.product.name : 'Product Deleted'}
                                         </td>
-                                        <td className={`px-6 py-4 whitespace-nowrap text-sm font-semibold ${t.transactionType === 'sale' ? 'text-red-600' : 'text-green-600'}`}>{t.transactionType.toUpperCase()}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{t.quantityChange}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <td className={`px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-semibold ${t.transactionType === 'sale' ? 'text-red-600' : 'text-green-600'}`}>{t.transactionType.toUpperCase()}</td>
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{t.quantityChange}</td>
+                                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {/* CHECK IF PRODUCT EXISTS BEFORE READING unitPriceAtTransaction */}
                                             {t.product ? `$${t.unitPriceAtTransaction.toFixed(2)}` : 'N/A'}
                                         </td>
