@@ -33,9 +33,5 @@
       "src": "/(.*)",
       "dest": "/frontend/dist/$1"
     }
-  ],
-  "env": {
-    "MONGO_URI": "@ims_mongo_uri",
-    "JWT_SECRET": "@ims_jwt_secret"
-  }
+  ]
 }
