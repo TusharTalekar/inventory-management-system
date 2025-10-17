@@ -1,4 +1,3 @@
-// src/pages/Transactions.jsx
 import React, { useState, useEffect } from 'react';
 import { imsApi } from '../api/imsApi';
 import { useAuth } from '../context/AuthContext';
@@ -29,7 +28,11 @@ const Transactions = () => {
             const data = await imsApi('products', 'GET', null, user?.token);
             setProducts(data);
             if (data.length > 0) {
-                setFormData(prev => ({ ...prev, productId: data[0]._id }));
+                // Only set productId if it's the initial load or if the current one is invalid ('')
+                setFormData(prev => ({ 
+                    ...prev, 
+                    productId: prev.productId || data[0]._id 
+                }));
             }
         } catch (error) {
             setMessage(`Error fetching products for form: ${error.message}`);
@@ -52,8 +55,24 @@ const Transactions = () => {
         try {
             await imsApi('transactions', 'POST', formData, user.token);
             setMessage('Transaction recorded and stock updated successfully!');
+            
+            // 1. Refresh transactions list
             fetchTransactions();
-            setFormData(initialTransactionState);
+            
+            // 2. Refetch products to get updated stock levels in the dropdown
+            const freshProducts = await imsApi('products', 'GET', null, user?.token);
+            setProducts(freshProducts);
+
+            // 3. Reset form data, using a valid product ID for the next transaction
+            const resetProductId = freshProducts.length > 0 ? freshProducts[0]._id : '';
+
+            // This resets the form to default values, but with a valid productId
+            setFormData({ 
+                productId: resetProductId, 
+                transactionType: initialTransactionState.transactionType,
+                quantityChange: initialTransactionState.quantityChange 
+            });
+            
         } catch (error) {
             setMessage(`Error: ${error.message}`);
         }
