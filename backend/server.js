@@ -6,6 +6,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const transactionRoutes = require('./routes/transactionRoutes');
+
 // Load env vars
 dotenv.config();
 
@@ -17,25 +18,17 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Root route placeholder
 app.get('/', async (req, res) => {
     res.send("IMS backend");
 });
-
-// Import Routes
 
 // Mount Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/transactions', transactionRoutes);
-
-
 app.use('/api/admin/users', adminRoutes);
 
-// const PORT = process.env.PORT || 5000;
-
-// app.listen(PORT, () => {
-//     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-// });
-
+// Export the Express app instance for Vercel deployment
 module.exports = app;
-module.exports.handler = serverless(app);
