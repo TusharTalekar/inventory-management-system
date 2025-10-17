@@ -92,16 +92,21 @@ const Transactions = () => {
                 <div className="lg:col-span-1 bg-gray-50 p-6 rounded-xl shadow-lg h-fit">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Record New Transaction</h2>
                     <form onSubmit={handleRecord} className="space-y-4">
-                        <select name="productId" value={formData.productId} onChange={handleChange} required className="w-full p-2 border rounded-md">
+                        <label htmlFor="productId" className="block text-sm font-medium text-gray-700">Product</label>
+                        <select id="productId" name="productId" value={formData.productId} onChange={handleChange} required className="w-full p-2 border rounded-md">
                             {products.map(p => (
                                 <option key={p._id} value={p._id}>{p.name} (Stock: {p.countInStock})</option>
                             ))}
                         </select>
-                        <select name="transactionType" value={formData.transactionType} onChange={handleChange} required className="w-full p-2 border rounded-md">
+                        
+                        <label htmlFor="transactionType" className="block text-sm font-medium text-gray-700">Transaction Type</label>
+                        <select id="transactionType" name="transactionType" value={formData.transactionType} onChange={handleChange} required className="w-full p-2 border rounded-md">
                             <option value="sale">Sale (Deduct Stock)</option>
                             <option value="restock">Restock (Add Stock)</option>
                         </select>
-                        <input name="quantityChange" type="number" value={formData.quantityChange} onChange={handleChange} placeholder="Quantity" required min="1" className="w-full p-2 border rounded-md" />
+
+                        <label htmlFor="quantityChange" className="block text-sm font-medium text-gray-700">Quantity</label>
+                        <input id="quantityChange" name="quantityChange" type="number" value={formData.quantityChange} onChange={handleChange} placeholder="Quantity" required min="1" className="w-full p-2 border rounded-md" />
 
                         <button type="submit" className="w-full p-2 text-white bg-green-600 rounded-md hover:bg-green-700">
                             Record {formData.transactionType.charAt(0).toUpperCase() + formData.transactionType.slice(1)}

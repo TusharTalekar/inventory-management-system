@@ -87,13 +87,26 @@ const Products = () => {
                 <div className="lg:col-span-1 bg-gray-50 p-6 rounded-xl shadow-lg h-fit">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">{isEditing ? 'Edit Product' : 'Add New Product'}</h2>
                     <form onSubmit={handleSave} className="space-y-4">
-                        <input name="name" value={formData.name} onChange={handleChange} placeholder="Product Name" required className="w-full p-2 border rounded-md" />
-                        <input name="sku" value={formData.sku} onChange={handleChange} placeholder="SKU (Optional)" className="w-full p-2 border rounded-md" />
-                        <input name="category" value={formData.category} onChange={handleChange} placeholder="Category" required className="w-full p-2 border rounded-md" />
-                        <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" className="w-full p-2 border rounded-md" />
-                        <input name="unitPrice" type="number" value={formData.unitPrice} onChange={handleChange} placeholder="Unit Price" required min="0" className="w-full p-2 border rounded-md" />
-                        <input name="countInStock" type="number" value={formData.countInStock} onChange={handleChange} placeholder="Stock Quantity" required min="0" className="w-full p-2 border rounded-md" />
-                        <input name="lowStockThreshold" type="number" value={formData.lowStockThreshold} onChange={handleChange} placeholder="Low Stock Threshold" required min="0" className="w-full p-2 border rounded-md" />
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Product Name</label>
+                        <input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Product Name" required className="w-full p-2 border rounded-md" />
+
+                        <label htmlFor="sku" className="block text-sm font-medium text-gray-700">SKU</label>
+                        <input id="sku" name="sku" value={formData.sku} onChange={handleChange} placeholder="SKU (Optional)" className="w-full p-2 border rounded-md" />
+                        
+                        <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+                        <input id="category" name="category" value={formData.category} onChange={handleChange} placeholder="Category" required className="w-full p-2 border rounded-md" />
+                        
+                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="description" name="description" value={formData.description} onChange={handleChange} placeholder="Description" className="w-full p-2 border rounded-md" />
+                        
+                        <label htmlFor="unitPrice" className="block text-sm font-medium text-gray-700">Unit Price</label>
+                        <input id="unitPrice" name="unitPrice" type="number" value={formData.unitPrice} onChange={handleChange} placeholder="Unit Price" required min="0" className="w-full p-2 border rounded-md" />
+                        
+                        <label htmlFor="countInStock" className="block text-sm font-medium text-gray-700">Stock Quantity</label>
+                        <input id="countInStock" name="countInStock" type="number" value={formData.countInStock} onChange={handleChange} placeholder="Stock Quantity" required min="0" className="w-full p-2 border rounded-md" />
+                        
+                        <label htmlFor="lowStockThreshold" className="block text-sm font-medium text-gray-700">Low Stock Threshold</label>
+                        <input id="lowStockThreshold" name="lowStockThreshold" type="number" value={formData.lowStockThreshold} onChange={handleChange} placeholder="Low Stock Threshold" required min="0" className="w-full p-2 border rounded-md" />
                         
                         <div className="flex space-x-2">
                             <button type="submit" className="flex-1 p-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">

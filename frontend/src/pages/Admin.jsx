@@ -103,11 +103,17 @@ const Admin = () => {
                 <div className="lg:col-span-1 bg-gray-50 p-6 rounded-xl shadow-lg h-fit">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">{isEditing ? 'Edit User' : 'Add New User'}</h2>
                     <form onSubmit={handleSave} className="space-y-4">
-                        <input name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required className="w-full p-2 border rounded-md" />
-                        <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email Address" required className="w-full p-2 border rounded-md" />
-                        <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder={isEditing ? 'Leave blank to keep current password' : 'Password'} required={!isEditing} className="w-full p-2 border rounded-md" />
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required className="w-full p-2 border rounded-md" />
+
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email Address" required className="w-full p-2 border rounded-md" />
+
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <input id="password" name="password" type="password" value={formData.password} onChange={handleChange} placeholder={isEditing ? 'Leave blank to keep current password' : 'Password'} required={!isEditing} className="w-full p-2 border rounded-md" />
                         
-                        <select name="role" value={formData.role} onChange={handleChange} required className="w-full p-2 border rounded-md">
+                        <label htmlFor="role" className="block text-sm font-medium text-gray-700">Role</label>
+                        <select id="role" name="role" value={formData.role} onChange={handleChange} required className="w-full p-2 border rounded-md">
                             <option value="staff">Staff</option>
                             <option value="admin">Admin</option>
                         </select>
