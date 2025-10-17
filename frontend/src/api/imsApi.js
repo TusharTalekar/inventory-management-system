@@ -1,4 +1,5 @@
-const API_BASE_URL = '/api';
+// src/api/imsApi.js
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/api`;
 
 /**
  * Utility function to handle API calls
