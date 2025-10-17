@@ -1,5 +1,4 @@
-// src/api/imsApi.js
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 /**
  * Utility function to handle API calls
@@ -26,10 +25,10 @@ export const imsApi = async (endpoint, method = 'GET', body = null, token = null
 
     try {
         const response = await fetch(url, config);
-        
+
         // Handle 204 No Content for DELETE
-        if (response.status === 204) return { success: true }; 
-        
+        if (response.status === 204) return { success: true };
+
         // Parse JSON response
         const data = await response.json();
 
